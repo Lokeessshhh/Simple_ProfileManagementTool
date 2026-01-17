@@ -2,7 +2,6 @@
 
 A full-stack portfolio management application with Django REST API backend and React frontend. Manage candidate profiles, skills, projects, and work history.
 
-**Resume:** [Your Resume Link Here]
 
 ---
 
@@ -188,71 +187,7 @@ npm run dev
 
 Frontend runs at `http://localhost:5173` and expects API at `http://localhost:8000/api`.
 
----
 
-## Production Deployment
-
-### Backend (Render)
-
-1. Create a new Web Service on Render
-2. Connect your GitHub repository
-3. Configure:
-   - **Build Command:** `pip install -r requirements.txt`
-   - **Start Command:** `gunicorn backend.wsgi:application`
-   - **Environment Variables:**
-     - `DATABASE_URL` - PostgreSQL connection string
-     - `SECRET_KEY` - Django secret key
-     - `DEBUG` - `False`
-     - `ALLOWED_HOSTS` - Your Render domain
-
-4. Add `whitenoise` to serve static files:
-   ```python
-   # backend/settings.py
-   MIDDLEWARE = [
-       'django.middleware.security.SecurityMiddleware',
-       'whitenoise.middleware.WhiteNoiseMiddleware',
-       ...
-   ]
-   STATIC_ROOT = BASE_DIR / 'staticfiles'
-   STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-   ```
-
-5. Collect static files: `python manage.py collectstatic`
-
-### Frontend (Vercel/Netlify)
-
-1. Connect your GitHub repository
-2. Configure:
-   - **Build Command:** `npm run build`
-   - **Output Directory:** `dist`
-   - **Environment Variables:**
-     - `VITE_API_BASE` - Your deployed backend URL (e.g., `https://your-app.onrender.com/api`)
-
-### Database (Neon)
-
-1. Create a project at [neon.tech](https://neon.tech)
-2. Copy the pooled connection string
-3. Set as `DATABASE_URL` in your backend environment
-
----
-
-## Environment Variables
-
-### Backend (.env)
-```
-DATABASE_URL=postgresql://user:pass@host:5432/dbname?sslmode=require
-SECRET_KEY=your-secret-key-here
-DEBUG=False
-ALLOWED_HOSTS=localhost,127.0.0.1,your-domain.com
-API_CACHE_TIMEOUT=120
-```
-
-### Frontend (.env)
-```
-VITE_API_BASE=http://localhost:8000/api
-```
-
----
 
 ## Known Limitations
 
