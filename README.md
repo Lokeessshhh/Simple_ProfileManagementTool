@@ -170,7 +170,91 @@ npm run dev
 
 Frontend runs at `http://localhost:5173` and expects API at `http://localhost:8000/api`.
 
+---
 
+## Production Deployment
+
+### Backend on Render
+
+1. **Push code to GitHub** (if not already)
+
+2. **Create Web Service on Render:**
+   - Go to [render.com](https://render.com) and click "New" > "Web Service"
+   - Connect your GitHub repository
+   - Select the repository root (where `render.yaml` is located)
+
+3. **Configure Settings:**
+   - **Name:** `predusk-api` (or your choice)
+   - **Region:** Choose nearest to your users
+   - **Branch:** `main`
+   - **Runtime:** Python
+   - **Build Command:** `./build.sh`
+   - **Start Command:** `gunicorn backend.wsgi:application`
+
+4. **Set Environment Variables:**
+   ```
+   DATABASE_URL=postgresql://neondb_owner:xxxx@ep-xxx.neon.tech/neondb?sslmode=require
+   SECRET_KEY=<generate-a-random-64-char-string>
+   DEBUG=False
+   ```
+
+5. **Deploy:** Click "Create Web Service" and wait for build to complete
+
+6. **Your API URL:** `https://predusk-api.onrender.com`
+
+---
+
+### Frontend on Vercel
+
+1. **Push frontend to GitHub** (can be same repo, deploy from `/frontend` folder)
+
+2. **Create Project on Vercel:**
+   - Go to [vercel.com](https://vercel.com) and click "New Project"
+   - Import your GitHub repository
+   - Set **Root Directory** to `frontend`
+
+3. **Configure Build Settings:**
+   - **Framework Preset:** Vite
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+
+4. **Set Environment Variables:**
+   ```
+   VITE_API_BASE=https://predusk-api.onrender.com/api
+   ```
+   (Replace with your actual Render backend URL)
+
+5. **Deploy:** Click "Deploy" and wait for build to complete
+
+6. **Your Frontend URL:** `https://your-project.vercel.app`
+
+---
+
+### Post-Deployment Checklist
+
+- [ ] Test health endpoint: `curl https://your-api.onrender.com/health/`
+- [ ] Test API endpoints via frontend
+- [ ] Verify CORS is working (no console errors)
+- [ ] Check database connection
+- [ ] Add your deployed URLs to CORS settings if needed
+
+---
+
+## Environment Variables Reference
+
+### Backend (Render)
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `DATABASE_URL` | PostgreSQL connection string | Yes |
+| `SECRET_KEY` | Django secret key (64+ chars) | Yes |
+| `DEBUG` | Set to `False` for production | Yes |
+
+### Frontend (Vercel)
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `VITE_API_BASE` | Backend API URL (e.g., `https://api.onrender.com/api`) | Yes |
+
+---
 
 ## Known Limitations
 
