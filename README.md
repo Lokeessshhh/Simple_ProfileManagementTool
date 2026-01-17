@@ -97,47 +97,47 @@ Base URL: `http://localhost:8000/api/`
 
 ```bash
 # Health check
-curl http://localhost:8000/health/
+curl https://simple-profilemanagementtool.onrender.com/health/
 
 # Get all profiles
-curl http://localhost:8000/api/profiles/
+curl https://simple-profilemanagementtool.onrender.com/api/profiles/
 
 # Get projects filtered by skill
-curl "http://localhost:8000/api/projects/?skill=python"
+curl "https://simple-profilemanagementtool.onrender.com/api/projects/?skill=python"
 
 # Get top skills
-curl http://localhost:8000/api/skills/top/
+curl https://simple-profilemanagementtool.onrender.com/api/skills/top/
 
 # Search projects
-curl "http://localhost:8000/api/search/?q=portfolio"
+curl "https://simple-profilemanagementtool.onrender.com/api/search/?q=portfolio"
 
 # Create a new profile
-curl -X POST http://localhost:8000/api/profiles/ \
+curl -X POST https://simple-profilemanagementtool.onrender.com/api/profiles/ \
   -H "Content-Type: application/json" \
   -d '{"name": "John Doe", "email": "john@example.com", "education": "BS Computer Science"}'
 
 # Create a new skill
-curl -X POST http://localhost:8000/api/skills/ \
+curl -X POST https://simple-profilemanagementtool.onrender.com/api/skills/ \
   -H "Content-Type: application/json" \
   -d '{"profile": 1, "name": "Python"}'
 
 # Create a new project
-curl -X POST http://localhost:8000/api/projects/ \
+curl -X POST https://simple-profilemanagementtool.onrender.com/api/projects/ \
   -H "Content-Type: application/json" \
   -d '{"profile": 1, "title": "My Project", "description": "A cool project", "links": "https://github.com/example"}'
 
 # Create work experience
-curl -X POST http://localhost:8000/api/work/ \
+curl -X POST https://simple-profilemanagementtool.onrender.com/api/work/ \
   -H "Content-Type: application/json" \
   -d '{"profile": 1, "company": "Tech Corp", "role": "Developer", "start_date": "2023-01-01", "end_date": "2024-01-01", "description": "Built amazing things"}'
 
 # Update a skill
-curl -X PATCH http://localhost:8000/api/skills/1/ \
+curl -X PATCH https://simple-profilemanagementtool.onrender.com/api/skills/1/ \
   -H "Content-Type: application/json" \
   -d '{"name": "Python 3"}'
 
 # Delete a skill
-curl -X DELETE http://localhost:8000/api/skills/1/
+curl -X DELETE https://simple-profilemanagementtool.onrender.com/api/skills/1/
 ```
 
 ---
