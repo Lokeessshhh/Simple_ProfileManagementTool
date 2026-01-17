@@ -2,11 +2,12 @@
 
 A full-stack portfolio management application with Django REST API backend and React frontend. Manage candidate profiles, skills, projects, and work history.
 
+**Live :** https://simple-profile-management-tool.vercel.app/
+**Production API base:** https://simple-profilemanagementtool.onrender.com/api/
 
 ---
 
 ## Architecture
-
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
 │   React + Vite  │────▶│   Django REST   │────▶│   PostgreSQL    │
@@ -113,6 +114,14 @@ curl "https://simple-profilemanagementtool.onrender.com/api/search/?q=AI"
 # View top skills across the single profile
 curl https://simple-profilemanagementtool.onrender.com/api/skills/top/
 ```
+
+### Browser Quick Checks
+
+- Backend health: https://simple-profilemanagementtool.onrender.com/health/
+- Profile API response: https://simple-profilemanagementtool.onrender.com/api/profiles/1/
+- Skills list for profile 1: https://simple-profilemanagementtool.onrender.com/api/skills/?profile=1
+- Projects list for profile 1: https://simple-profilemanagementtool.onrender.com/api/projects/?profile=1
+- Frontend UI: https://simple-profile-management-tool.vercel.app/
 
 ---
 
