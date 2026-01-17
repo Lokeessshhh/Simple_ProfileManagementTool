@@ -80,6 +80,18 @@ function App() {
     setError(message);
   };
 
+  // Wake up the backend when the frontend loads
+  const wakeUpBackend = async () => {
+    try {
+      await axios.get('https://simple-profilemanagementtool.onrender.com/api/profiles/', {
+        timeout: 5000,
+      });
+    } catch (err) {
+      // Silently fail - the backend might be starting up
+      console.log('Backend wake-up initiated');
+    }
+  };
+
   const fetchProfiles = async () => {
     setStatus('Loading profiles…');
     try {
@@ -94,6 +106,8 @@ function App() {
   useEffect(() => {
     if (hasFetched.current) return;
     hasFetched.current = true;
+    // Wake up the backend first, then fetch profiles
+    wakeUpBackend();
     fetchProfiles();
   }, []);
 
