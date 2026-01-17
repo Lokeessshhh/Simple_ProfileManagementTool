@@ -99,45 +99,19 @@ Base URL: `http://localhost:8000/api/`
 # Health check
 curl https://simple-profilemanagementtool.onrender.com/health/
 
-# Get all profiles
-curl https://simple-profilemanagementtool.onrender.com/api/profiles/
+# Fetch the single seeded profile (Lokesh Lohar)
+curl https://simple-profilemanagementtool.onrender.com/api/profiles/1/
 
-# Get projects filtered by skill
-curl "https://simple-profilemanagementtool.onrender.com/api/projects/?skill=python"
+# Fetch all supporting collections tied to profile 1
+curl "https://simple-profilemanagementtool.onrender.com/api/skills/?profile=1"
+curl "https://simple-profilemanagementtool.onrender.com/api/projects/?profile=1"
+curl "https://simple-profilemanagementtool.onrender.com/api/work/?profile=1"
 
-# Get top skills
+# Search for profile projects mentioning "AI"
+curl "https://simple-profilemanagementtool.onrender.com/api/search/?q=AI"
+
+# View top skills across the single profile
 curl https://simple-profilemanagementtool.onrender.com/api/skills/top/
-
-# Search projects
-curl "https://simple-profilemanagementtool.onrender.com/api/search/?q=portfolio"
-
-# Create a new profile
-curl -X POST https://simple-profilemanagementtool.onrender.com/api/profiles/ \
-  -H "Content-Type: application/json" \
-  -d '{"name": "John Doe", "email": "john@example.com", "education": "BS Computer Science"}'
-
-# Create a new skill
-curl -X POST https://simple-profilemanagementtool.onrender.com/api/skills/ \
-  -H "Content-Type: application/json" \
-  -d '{"profile": 1, "name": "Python"}'
-
-# Create a new project
-curl -X POST https://simple-profilemanagementtool.onrender.com/api/projects/ \
-  -H "Content-Type: application/json" \
-  -d '{"profile": 1, "title": "My Project", "description": "A cool project", "links": "https://github.com/example"}'
-
-# Create work experience
-curl -X POST https://simple-profilemanagementtool.onrender.com/api/work/ \
-  -H "Content-Type: application/json" \
-  -d '{"profile": 1, "company": "Tech Corp", "role": "Developer", "start_date": "2023-01-01", "end_date": "2024-01-01", "description": "Built amazing things"}'
-
-# Update a skill
-curl -X PATCH https://simple-profilemanagementtool.onrender.com/api/skills/1/ \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Python 3"}'
-
-# Delete a skill
-curl -X DELETE https://simple-profilemanagementtool.onrender.com/api/skills/1/
 ```
 
 ---
